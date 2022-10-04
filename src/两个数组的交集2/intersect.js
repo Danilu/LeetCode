@@ -12,31 +12,21 @@ var intersect = function (nums1, nums2) {
     // 遍历nums2，看是否在hash表中出现，出现的话push进结果数组，频率-1
 
     // 构造{元素值：出现次数}这种结构
-    let hash = new Map();
-    let res = [];
-    if (nums1.length < nums2.length) {
-        [nums1, nums2] = [nums2, nums1]
-    }
-    for (let i = 0; i < nums1.length; i++) {
-        if (hash.has(nums1[i])) {
-            hash.set(nums1[i], hash.get(nums1[i]) + 1);
+    const map = {};
+    const res = [];
+    for (const num1 of nums1) { // 记录nums1各个数字的出现次数
+        if (map[num1]) {
+            map[num1]++;
         } else {
-            hash.has(nums1[i], 1);
+            map[num1] = 1;
         }
     }
-    // 遍历nums2
-    for (let i = 0; i < nums2.length; i++) {
-        let temp = nums2[i];
-        let hasKey = hash.has(temp);
-        if (temp) {
-            res.push(temp);
-            if (hasKey > 1) {
-                hash.set(temp, hasKey - 1)
-            } else {
-                hash.delete(temp);
-            }
+    for (const num2 of nums2) { // 遍历nums2，看看有没有数字在nums1出现过
+        const val = map[num2];
+        if (val > 0) {            // 有出现过
+            res.push(num2);         // 推入res数组
+            map[num2]--;            // 匹配掉一个，就减一个
         }
-
     }
     return res;
 };

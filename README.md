@@ -1,3 +1,4 @@
 # LeetCode
-Organize my own topics on leetcode
+目前是在leetcode上面刷题
+当前刷的是初级算法和图解数据结构两本书，所以现在上传的代码也是这两本树上的
 目前所做的题目，涉及JS和C++两种语言，后续会增加Java（计划中）、Python
